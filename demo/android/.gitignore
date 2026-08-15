@@ -1,0 +1,88 @@
+# =========================
+# Flutter
+# =========================
+
+.dart_tool/
+.packages
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
+
+# =========================
+# Android / Gradle
+# =========================
+
+.gradle/
+demo/android/.gradle/
+demo/android/local.properties
+demo/android/app/debug/
+demo/android/app/profile/
+demo/android/app/release/
+captures/
+*.iml
+
+# Generated Android files
+GeneratedPluginRegistrant.java
+.cxx/
+
+# =========================
+# Android signing keys
+# =========================
+
+key.properties
+**/*.keystore
+**/*.jks
+
+# =========================
+# Flutter SDK
+# =========================
+
+/flutter/
+
+# =========================
+# JDK
+# =========================
+
+/demo/oracleJdk-26/
+
+# =========================
+# IDE
+# =========================
+
+.idea/
+.vscode/
+
+# =========================
+# macOS
+# =========================
+
+.DS_Store
+
+# =========================
+# Windows
+# =========================
+
+Thumbs.db
+
+# =========================
+# Logs
+# =========================
+
+*.log
+
+# =========================
+# Environment / Secrets
+# =========================
+
+.env
+.env.*
+!.env.example
+/backend/.env
+
+# =========================
+# Firebase
+# =========================
+
+firebase-debug.log

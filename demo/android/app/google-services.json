@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706075900956",
+    "project_id": "youth-mental-wellness-7f3d2",
+    "storage_bucket": "youth-mental-wellness-7f3d2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706075900956:android:bc33f4c0836fa1d6ccf3d9",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5XhwG5EqDXpVdLJJlPw92VwNjQkxbMZs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
