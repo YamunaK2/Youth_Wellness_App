@@ -3,7 +3,6 @@ import 'widgets/phone_frame.dart';
 import 'core/theme/app_theme.dart';
 import 'screens/auth/login_screen.dart';
 
-
 class YouthWellnessApp extends StatelessWidget {
   const YouthWellnessApp({super.key});
 
@@ -13,9 +12,9 @@ class YouthWellnessApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Youth Wellness',
       theme: AppTheme.lightTheme,
-      home: const PhoneFrame(
-        child: LoginScreen(),
-      ),
+      builder: (context, child) =>
+          PhoneFrame(child: child ?? const SizedBox.shrink()),
+      home: const LoginScreen(),
     );
   }
 }

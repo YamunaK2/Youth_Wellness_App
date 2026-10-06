@@ -80,7 +80,7 @@ Thumbs.db
 .env.*
 !.env.example
 /backend/.env
-
+.vscode/
 # =========================
 # Firebase
 # =========================

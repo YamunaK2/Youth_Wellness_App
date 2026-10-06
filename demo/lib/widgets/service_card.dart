@@ -17,16 +17,17 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: BorderRadius.circular(18),
       onTap: onTap,
+      borderRadius: BorderRadius.circular(18),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(18),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12.withOpacity(.04),
+              color: Colors.black12.withOpacity(0.04),
               blurRadius: 8,
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -35,16 +36,24 @@ class ServiceCard extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 28,
-              backgroundColor: color.withOpacity(.15),
-              child: Icon(icon, color: color, size: 30),
+              backgroundColor: color.withOpacity(0.15),
+              child: Icon(
+                icon,
+                color: color,
+                size: 30,
+              ),
             ),
+
             const SizedBox(height: 12),
+
             Text(
               title,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
+                fontSize: 14,
               ),
-            )
+            ),
           ],
         ),
       ),

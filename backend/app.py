@@ -1,49 +1,92 @@
 import os
-import requests
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+from groq import Groq
 
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-HF_API_KEY = os.getenv("HF_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-small"
-HEADERS = {"Authorization": f"Bearer {HF_API_KEY}"}
+if not GROQ_API_KEY:
+    raise RuntimeError("GROQ_API_KEY is missing from .env")
 
-@app.route("/chat", methods=["POST", "GET"])
+client = Groq(api_key=GROQ_API_KEY)
+
+
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "Youth Wellness AI Backend is running"
+    })
+
+
+@app.route("/chat", methods=["GET", "POST"])
 def chat():
+
     if request.method == "GET":
-        return "Chat server running"
+        return jsonify({
+            "message": "Chat server running"
+        })
 
-    user_message = request.json.get("message", "").strip()
+    try:
+        data = request.get_json(silent=True) or {}
 
-    if not user_message:
-        return jsonify({"reply": "Please say something 😊"}), 200
+        user_message = data.get("message", "").strip()
 
-    response = requests.post(
-        API_URL,
-        headers=HEADERS,
-        json={
-            "inputs": f"Answer politely and helpfully: {user_message}"
-        },
-        timeout=60
-    )
+        if not user_message:
+            return jsonify({
+                "reply": "Please say something 😊"
+            }), 200
 
-    if response.status_code == 200:
-        data = response.json()
-        if isinstance(data, list) and "generated_text" in data[0]:
-            return jsonify({"reply": data[0]["generated_text"]}), 200
-        return jsonify({"reply": "Hello 😊 How can I help you today?"}), 200
+        completion = client.chat.completions.create(
+            model="openai/gpt-oss-20b",
 
-    if response.status_code == 503:
-        return jsonify({"reply": "AI is waking up. Please send again 😊"}), 200
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "You are Youth Wellness Companion, "
+                        "a friendly and supportive wellness assistant "
+                        "for young people. "
+                        "Respond with empathy and encouragement. "
+                        "Keep responses clear and reasonably concise. "
+                        "You are not a doctor or psychologist and should "
+                        "not claim to provide professional diagnosis."
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": user_message
+                }
+            ],
 
-    return jsonify({"reply": "AI is busy. Try again shortly."}), 200
+            temperature=0.7,
+            max_tokens=500,
+        )
+
+        reply = completion.choices[0].message.content
+
+        return jsonify({
+            "reply": reply
+        }), 200
+
+    except Exception as e:
+
+        print("Groq Error:", e)
+
+        return jsonify({
+            "reply": "I'm having trouble connecting right now. Please try again 😊"
+        }), 500
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(
+        host="0.0.0.0",
+        port=5000,
+        debug=True
+    )

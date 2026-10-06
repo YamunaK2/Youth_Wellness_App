@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:demo/screens/drawing/drawing_screen.dart';
 import '../../widgets/service_card.dart';
+import 'package:demo/screens/appointment/booking_screen.dart';
+import 'package:demo/screens/chatbot/chatbot_screen.dart';
+import 'package:demo/screens/mood/mood_screen.dart';
+import 'package:demo/screens/journal/journal_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-          )
+          ),
         ],
       ),
 
@@ -38,7 +43,6 @@ class HomeScreen extends StatelessWidget {
 
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
 
             const Text(
@@ -61,12 +65,11 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 25),
 
+            // AI CHAT CARD
             Container(
               padding: const EdgeInsets.all(22),
-
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
-
                 gradient: const LinearGradient(
                   colors: [
                     Color(0xff00897B),
@@ -77,7 +80,6 @@ class HomeScreen extends StatelessWidget {
 
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
 
                   const Text(
@@ -101,7 +103,14 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: 20),
 
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ChatbotScreen(),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                     ),
@@ -111,7 +120,7 @@ class HomeScreen extends StatelessWidget {
                         color: Color(0xff00897B),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -133,66 +142,114 @@ class HomeScreen extends StatelessWidget {
               shrinkWrap: true,
 
               crossAxisCount: 2,
-
               crossAxisSpacing: 15,
               mainAxisSpacing: 15,
 
               childAspectRatio: 1.1,
 
-              children: const [
+              children: [
 
+                // AI CHAT
                 ServiceCard(
                   title: "AI Chat",
                   icon: Icons.chat,
                   color: Colors.teal,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const ChatbotScreen(),
+                      ),
+                    );
+                  },
                 ),
 
+                // MOOD
                 ServiceCard(
                   title: "Mood Tracker",
                   icon: Icons.mood,
                   color: Colors.orange,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const MoodScreen(),
+                      ),
+                    );
+                  },
                 ),
 
+                // JOURNAL
                 ServiceCard(
                   title: "Journal",
                   icon: Icons.menu_book,
                   color: Colors.purple,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const JournalScreen(),
+                      ),
+                    );
+                  },
                 ),
 
-                ServiceCard(
+                // PODCAST
+                const ServiceCard(
                   title: "Podcast",
                   icon: Icons.podcasts,
                   color: Colors.blue,
                 ),
 
-                ServiceCard(
+                // MUSIC
+                const ServiceCard(
                   title: "Music",
                   icon: Icons.music_note,
                   color: Colors.green,
                 ),
 
+                // DRAWING
                 ServiceCard(
-                  title: "Drawing",
-                  icon: Icons.palette,
-                  color: Colors.red,
-                ),
+  title: "Drawing",
+  icon: Icons.palette,
+  color: Colors.red,
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const DrawingScreen(),
+      ),
+    );
+  },
+),
 
-                ServiceCard(
+                // WRITING
+                const ServiceCard(
                   title: "Writing",
                   icon: Icons.edit,
                   color: Colors.deepOrange,
                 ),
 
+                // PSYCHOLOGIST
                 ServiceCard(
                   title: "Psychologist",
                   icon: Icons.psychology,
                   color: Colors.indigo,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const BookingScreen(),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
 
             const SizedBox(height: 30),
 
+            // DAILY TIP
             Container(
               padding: const EdgeInsets.all(20),
 
@@ -216,7 +273,8 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: 10),
 
                   Text(
-                    "Take a 5-minute break every hour. Stretch, breathe deeply, and relax your mind.",
+                    "Take a 5-minute break every hour. "
+                    "Stretch, breathe deeply, and relax your mind.",
                   ),
                 ],
               ),

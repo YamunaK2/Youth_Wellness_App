@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:demo/screens/home/home_screen.dart';
 import 'package:demo/navigation/bottom_nav.dart';
-import 'package:demo/widgets/phone_frame.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -23,10 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Color(0xffE0F2F1),
-              Colors.white,
-            ],
+            colors: [Color(0xffE0F2F1), Colors.white],
           ),
         ),
         child: SafeArea(
@@ -52,30 +48,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    child: const Icon(
-                      Icons.spa,
-                      color: Colors.white,
-                      size: 45,
-                    ),
+                    child: const Icon(Icons.spa, color: Colors.white, size: 45),
                   ),
 
                   const SizedBox(height: 25),
 
                   const Text(
                     "Youth Wellness",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
 
                   const SizedBox(height: 8),
 
                   const Text(
                     "Your mental well-being is our priority 💚",
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(color: Colors.grey),
                   ),
 
                   const SizedBox(height: 40),
@@ -112,9 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                         icon: Icon(
-                          obscure
-                              ? Icons.visibility
-                              : Icons.visibility_off,
+                          obscure ? Icons.visibility : Icons.visibility_off,
                         ),
                       ),
                       filled: true,
@@ -142,13 +127,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () {
                         Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-      builder: (_) => const PhoneFrame(
-        child: BottomNavigationScreen(),
-      ),
-    ),
-  );
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const BottomNavigationScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         "Login",
@@ -164,9 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   TextButton(
                     onPressed: () {},
-                    child: const Text(
-                      "Forgot Password?",
-                    ),
+                    child: const Text("Forgot Password?"),
                   ),
                 ],
               ),
